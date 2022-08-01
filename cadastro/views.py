@@ -10,7 +10,7 @@ def index(request):
     # Crie o objeto PDF, usando o objeto response como seu "arquivo".
     p = canvas.Canvas(response)
 
-    p.drawString(100, 100, "Hello world.")
+    p.drawString(100, 100, "<h1>Oi</h1>")
 
     p.showPage()
     p.save()

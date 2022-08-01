@@ -45,7 +45,7 @@ class Cliente(models.Model):
         ordering = ['Nome_do_Cliente']
 
     def gerar_relatorio(self):
-        return mark_safe("""<a href=\"/admin\" target="_blank"><img src=\"/static/images/relatorio.png\" alt="Gerar Relatorio"></a>""")
+        return mark_safe("""<a href=\"/cadastro\" target="_blank"><img src=\"/static/images/relatorio.png\" alt="Gerar Relatorio"></a>""")
 
     def __str__(self):
         return self.Nome_do_Cliente
