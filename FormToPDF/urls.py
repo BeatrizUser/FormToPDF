@@ -15,8 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import *
+from django.conf.urls.static import static
+from django.views.generic.base import TemplateView
+from django.conf import settings
+from rest_framework.urlpatterns import format_suffix_patterns
+from .views import GeneratePdf
+from . import views
+from cadastro import forms
 
 urlpatterns = [
+    path('relatorio/<int:id>/', views.relatorio, name='relatorio'),
+    path('relatorio/pdf/<int:id>/', GeneratePdf.as_view()),
     path('cadastro/', include('cadastro.urls')),
     path('admin/', admin.site.urls),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+urlpatterns = format_suffix_patterns(urlpatterns)
