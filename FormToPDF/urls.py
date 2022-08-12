@@ -22,13 +22,11 @@ from django.conf import settings
 from rest_framework.urlpatterns import format_suffix_patterns
 from .views import GeneratePdf
 from . import views
-from cadastro import forms
 
 urlpatterns = [
-    path('relatorio/<int:id>/', views.relatorio, name='relatorio'),
     path('relatorio/pdf/<int:id>/', GeneratePdf.as_view()),
-    path('cadastro/', include('cadastro.urls')),
-    path('admin/', admin.site.urls),
+    path('pdfGerador/', include('cadastro.urls')),
+    path('', admin.site.urls),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
